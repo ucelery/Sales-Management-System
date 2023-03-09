@@ -144,7 +144,7 @@ public class addRecord extends javax.swing.JFrame {
         jLabel11.setText("You are currently adding records");
         logoSide3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 360, 40));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/waveHand.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/waveHand.png"))); // NOI18N
         logoSide3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
@@ -222,7 +222,6 @@ public class addRecord extends javax.swing.JFrame {
 
         productName.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         productName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Coscard/Photocard Printing", "Photo Paper Printing" }));
-        productName.setBorder(null);
         productName.setFocusable(false);
         productName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,19 +280,19 @@ public class addRecord extends javax.swing.JFrame {
         jLabel16.setText("FILL-OUT THE FORM");
         logoSide5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/form.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/form.png"))); // NOI18N
         logoSide5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/num.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/num.png"))); // NOI18N
         logoSide5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, 50));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/form.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/form.png"))); // NOI18N
         logoSide5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 70, -1, -1));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/box.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/box.png"))); // NOI18N
         logoSide5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 225, -1, 40));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/print.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/print.png"))); // NOI18N
         logoSide5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, -1, 40));
 
         logBackground.add(logoSide5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 1170, 760));
