@@ -219,7 +219,7 @@
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/App/waveHand.png"/>
+                  <Image iconType="3" name="/App/Images/waveHand.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -408,9 +408,6 @@
                     <StringItem index="1" value="Photo Paper Printing"/>
                   </StringArray>
                 </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -567,7 +564,7 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/App/form.png"/>
+                  <Image iconType="3" name="/App/Images/form.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -579,7 +576,7 @@
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/App/num.png"/>
+                  <Image iconType="3" name="/App/Images/num.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -591,7 +588,7 @@
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/App/form.png"/>
+                  <Image iconType="3" name="/App/Images/form.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -603,7 +600,7 @@
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/App/box.png"/>
+                  <Image iconType="3" name="/App/Images/box.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -615,7 +612,7 @@
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/App/print.png"/>
+                  <Image iconType="3" name="/App/Images/print.png"/>
                 </Property>
               </Properties>
               <Constraints>
