@@ -118,7 +118,7 @@ public class RecordViewing extends javax.swing.JFrame {
         logoSide.setBackground(new java.awt.Color(251, 215, 9));
         logoSide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/logo_dashboard.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/logo_dashboard.png"))); // NOI18N
         logoSide.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         logoSide1.add(logoSide, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 80));
@@ -205,7 +205,7 @@ public class RecordViewing extends javax.swing.JFrame {
         jLabel1.setText("Summary");
         logBackground.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 110, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/user_profile.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/user_profile.png"))); // NOI18N
         logBackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 10, 90, 90));
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
@@ -318,7 +318,7 @@ public class RecordViewing extends javax.swing.JFrame {
 
         logoSide6.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 1130, 160));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/printer.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/printer.png"))); // NOI18N
         logoSide6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 70, 80));
 
         logBackground.add(logoSide6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 620, 1170, 370));
@@ -351,7 +351,7 @@ public class RecordViewing extends javax.swing.JFrame {
         jLabel31.setText("Hover for overall details");
         jPanel14.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 40));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/info.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/info.png"))); // NOI18N
         jPanel14.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, -1, 40));
 
         jPanel13.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 110));
@@ -462,7 +462,7 @@ public class RecordViewing extends javax.swing.JFrame {
         jLabel37.setText("Hover for overall details");
         jPanel17.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 40));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/info.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/info.png"))); // NOI18N
         jPanel17.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 30, 40));
 
         jPanel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 110));
