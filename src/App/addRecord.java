@@ -496,7 +496,7 @@ public class addRecord extends javax.swing.JFrame {
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE stock = '"+(rs.getInt("stock") + currentStock) +"', photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=4";
+                            String newRecord = "UPDATE photopaper SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=4";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
