@@ -58,6 +58,9 @@ public class addRecord extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jSpinner2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -243,8 +246,8 @@ public class addRecord extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("QUANTITY SOLD:");
-        logoSide5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, -1, -1));
+        jLabel7.setText("STOCKS:");
+        logoSide5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, -1, -1));
 
         cbPPP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3R Satin", "4R Satin", "4R Glossy", "4R Pearl Holo", "5R Satin", "A4 Glossy", "A4 Satin" }));
         cbPPP.addActionListener(new java.awt.event.ActionListener() {
@@ -284,7 +287,7 @@ public class addRecord extends javax.swing.JFrame {
         logoSide5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/num.png"))); // NOI18N
-        logoSide5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, 50));
+        logoSide5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, -1, 50));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/form.png"))); // NOI18N
         logoSide5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 70, -1, -1));
@@ -295,13 +298,24 @@ public class addRecord extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/print.png"))); // NOI18N
         logoSide5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, -1, 40));
 
+        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("QUANTITY SOLD:");
+        logoSide5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, -1, -1));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/num.png"))); // NOI18N
+        logoSide5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, 50));
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        logoSide5.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 440, 70, 30));
+
         logBackground.add(logoSide5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 1170, 760));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 1440, Short.MAX_VALUE)
+            .addComponent(logBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,6 +387,9 @@ public class addRecord extends javax.swing.JFrame {
                 b = cbPPP.getSelectedItem().toString();
                 String soldValue = jSpinner1.getValue().toString();
                 
+                String itemStock = jSpinner2.getValue().toString();
+                int currentStock = Integer.parseInt(itemStock);
+                
                 int currentSold = Integer.parseInt(soldValue);
                 
                 //3R Satin
@@ -385,14 +402,14 @@ public class addRecord extends javax.swing.JFrame {
                     //update database
                     try
                     {  
-                       String getValues = "SELECT sold,sales,profit FROM photopaper WHERE ppID=1";
+                       String getValues = "SELECT stock,sold,sales,profit FROM photopaper WHERE ppID=1";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getValues);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=1";
+                            String newRecord = "UPDATE photopaper SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=1";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -412,16 +429,16 @@ public class addRecord extends javax.swing.JFrame {
                 {
                     int currentSales = currentSold * 25;
                     int currentProfit = currentSold * 12;
-                    
+
                     try
                     {  
-                       String getValues = "SELECT sold,sales,profit FROM photopaper WHERE ppID=2";
+                       String getValues = "SELECT stock,sold,sales,profit FROM photopaper WHERE ppID=2";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getValues);
                        
                        while(rs.next())
                        {
-                            String newRecord = "UPDATE photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=2";
+                            String newRecord = "UPDATE photopaper SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=2";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -443,14 +460,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photopaper WHERE ppID=3";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photopaper WHERE ppID=3";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=3";
+                            String newRecord = "UPDATE photopaper SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=3";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -472,14 +489,14 @@ public class addRecord extends javax.swing.JFrame {
   
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photopaper WHERE ppID=4";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photopaper WHERE ppID=4";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=4";
+                            String newRecord = "UPDATE stock = '"+(rs.getInt("stock") + currentStock) +"', photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=4";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -501,14 +518,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photopaper WHERE ppID=5";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photopaper WHERE ppID=5";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=5";
+                            String newRecord = "UPDATE photopaper SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=5";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -531,14 +548,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photopaper WHERE ppID=6";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photopaper WHERE ppID=6";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=6";
+                            String newRecord = "UPDATE photopaper SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=6";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -560,14 +577,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photopaper WHERE ppID=7";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photopaper WHERE ppID=7";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photopaper SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=7";
+                            String newRecord = "UPDATE photopaper SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE ppID=7";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -612,7 +629,9 @@ public class addRecord extends javax.swing.JFrame {
                 //check inputs
                 b = cbCPP.getSelectedItem().toString();
                 String soldValue = jSpinner1.getValue().toString();
+                String itemStock = jSpinner2.getValue().toString();
                 
+                int currentStock = Integer.parseInt(itemStock);
                 int currentSold = Integer.parseInt(soldValue);
                 
                 if(b == "Glossy")
@@ -622,13 +641,13 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photocard WHERE photocardID=1";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photocard WHERE photocardID=1";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
-                            String newRecord = "UPDATE photocard SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=1";
+                            String newRecord = "UPDATE photocard SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=1";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -649,14 +668,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photocard WHERE photocardID=2";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photocard WHERE photocardID=2";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photocard SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=2";
+                            String newRecord = "UPDATE photocard SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=2";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -678,14 +697,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photocard WHERE photocardID=3";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photocard WHERE photocardID=3";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photocard SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=3";
+                            String newRecord = "UPDATE photocard SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=3";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -706,14 +725,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photocard WHERE photocardID=4";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photocard WHERE photocardID=4";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photocard SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=4";
+                            String newRecord = "UPDATE photocard SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=4";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -734,14 +753,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photocard WHERE photocardID=5";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photocard WHERE photocardID=5";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photocard SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=5";
+                            String newRecord = "UPDATE photocard SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=5";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -762,14 +781,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photocard WHERE photocardID=6";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photocard WHERE photocardID=6";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photocard SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=6";
+                            String newRecord = "UPDATE photocard SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=6";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -790,14 +809,14 @@ public class addRecord extends javax.swing.JFrame {
                     
                     try
                     {  
-                       String getSold = "SELECT sold,sales,profit FROM photocard WHERE photocardID=7";
+                       String getSold = "SELECT stock,sold,sales,profit FROM photocard WHERE photocardID=7";
                        Statement st = connect.createStatement();
                        ResultSet rs = st.executeQuery(getSold);
                        
                        while(rs.next())
                        {
 
-                            String newRecord = "UPDATE photocard SET sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=7";
+                            String newRecord = "UPDATE photocard SET stock = '"+(rs.getInt("stock") + currentStock) +"', sold='"+(rs.getInt("sold") + currentSold)+"',sales='"+(rs.getInt("sales") + currentSales)+"',profit='"+(rs.getInt("profit") + currentProfit)+"' WHERE photocardID=7";
                             PreparedStatement addSalesRecord = connect.prepareStatement(newRecord);
                             addSalesRecord.execute();         
                             JOptionPane.showMessageDialog(null, "Success.");
@@ -896,8 +915,10 @@ public class addRecord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -909,6 +930,7 @@ public class addRecord extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JPanel logBackground;
     private javax.swing.JPanel logoSide;
     private javax.swing.JPanel logoSide1;
