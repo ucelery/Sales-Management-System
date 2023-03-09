@@ -62,7 +62,7 @@ public class login extends javax.swing.JFrame {
 
         logoSide.setBackground(new java.awt.Color(251, 215, 9));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/logo.png"))); // NOI18N
 
         description1.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
         description1.setText("An efficient, fast, and reliable");
