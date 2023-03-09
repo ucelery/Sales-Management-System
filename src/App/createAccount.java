@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import com.sun.istack.internal.logging.Logger;
 
 public class createAccount extends javax.swing.JFrame {
     
@@ -266,9 +265,9 @@ public class createAccount extends javax.swing.JFrame {
         //make a connection with database
         try
         {    
-            String dbUser = "root";
-            String dbPassword = "root";
-            String dbURL ="jdbc:mysql://localhost:3306/connectdb";
+            String dbUser = "napphy";
+            String dbPassword = "Sep2021102596";
+            String dbURL ="jdbc:mysql://db4free.net:3306/cs155project";
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             

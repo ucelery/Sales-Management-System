@@ -603,9 +603,9 @@ public class RecordViewing extends javax.swing.JFrame {
         //connect to db
         try
         {
-            String dbUser = "root";
-            String dbPassword = "root";
-            String dbURL ="jdbc:mysql://localhost:3306/connectdb";
+            String dbUser = "napphy";
+            String dbPassword = "Sep2021102596";
+            String dbURL ="jdbc:mysql://db4free.net:3306/cs155project";
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             
@@ -685,9 +685,9 @@ public class RecordViewing extends javax.swing.JFrame {
         //connect to db
         try
         {
-            String dbUser = "root";
-            String dbPassword = "root";
-            String dbURL ="jdbc:mysql://localhost:3306/connectdb";
+            String dbUser = "napphy";
+            String dbPassword = "Sep2021102596";
+            String dbURL ="jdbc:mysql://db4free.net:3306/cs155project";
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             
@@ -741,9 +741,9 @@ public class RecordViewing extends javax.swing.JFrame {
                 //connect to db
         try
         {
-            String dbUser = "root";
-            String dbPassword = "root";
-            String dbURL ="jdbc:mysql://localhost:3306/connectdb";
+            String dbUser = "napphy";
+            String dbPassword = "Sep2021102596";
+            String dbURL ="jdbc:mysql://db4free.net:3306/cs155project";
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             
@@ -823,9 +823,9 @@ public class RecordViewing extends javax.swing.JFrame {
         //connect to db
         try
         {
-            String dbUser = "root";
-            String dbPassword = "root";
-            String dbURL ="jdbc:mysql://localhost:3306/connectdb";
+            String dbUser = "napphy";
+            String dbPassword = "Sep2021102596";
+            String dbURL ="jdbc:mysql://db4free.net:3306/cs155project";
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             
