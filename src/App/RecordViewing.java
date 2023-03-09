@@ -189,7 +189,7 @@ public class RecordViewing extends javax.swing.JFrame {
         jLabel11.setText("You are currently viewing the records");
         logoSide3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 360, 40));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/waveHand.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/waveHand.png"))); // NOI18N
         logoSide3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
