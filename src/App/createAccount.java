@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import com.sun.istack.internal.logging.Logger;
 
 public class createAccount extends javax.swing.JFrame {
     
@@ -65,7 +64,7 @@ public class createAccount extends javax.swing.JFrame {
 
         logoSide.setBackground(new java.awt.Color(251, 215, 9));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/logo.png"))); // NOI18N
 
         description1.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
         description1.setText("An efficient, fast, and reliable");
@@ -266,9 +265,9 @@ public class createAccount extends javax.swing.JFrame {
         //make a connection with database
         try
         {    
-            String dbUser = "root";
-            String dbPassword = "root";
-            String dbURL ="jdbc:mysql://localhost:3306/connectdb";
+            String dbUser = "napphy";
+            String dbPassword = "Sep2021102596";
+            String dbURL ="jdbc:mysql://db4free.net:3306/cs155project";
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             
