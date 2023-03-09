@@ -737,7 +737,7 @@ public class RecordViewing extends javax.swing.JFrame {
 
     private void CPPviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPPviewActionPerformed
         // TODO add your handling code here:
-        jLabel43.setText("COSCARD/PHOTCARD PRINTING");
+        jLabel43.setText("COSCARD/PHOTOCARD PRINTING");
                 //connect to db
         try
         {
