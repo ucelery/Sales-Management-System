@@ -623,7 +623,7 @@ public class RecordViewing extends javax.swing.JFrame {
             //display records
                 while(records.next())
                 {
-                   tableModel.addRow(new String[]{records.getString(1), records.getString(2), records.getString(3), records.getString(4), records.getString(5)});
+                   tableModel.addRow(new String[]{records.getString(1), records.getString(2), records.getString(3), records.getString(4), records.getString(5), records.getString(6)});
                     
                 }
                 
@@ -761,7 +761,7 @@ public class RecordViewing extends javax.swing.JFrame {
             //display records
                 while(records.next())
                 {
-                   tableModel.addRow(new String[]{records.getString(1), records.getString(2), records.getString(3), records.getString(4), records.getString(5)});
+                   tableModel.addRow(new String[]{records.getString(1), records.getString(2), records.getString(3), records.getString(4), records.getString(5), records.getString(6)});
                     
                 }
                 
