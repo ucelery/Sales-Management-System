@@ -371,9 +371,9 @@ public class addRecord extends javax.swing.JFrame {
         //connect to db
         try
         {
-            String dbUser = "napphy";
+            String dbUser = "Napphy";
             String dbPassword = "Sep2021102596";
-            String dbURL ="jdbc:mysql://db4free.net:3306/cs155project";
+            String dbURL ="jdbc:mysql://cs155-project.c4znnhx9inbw.ap-southeast-2.rds.amazonaws.com:3306/cs155?zeroDateTimeBehavior=CONVERT_TO_NULL";
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             
