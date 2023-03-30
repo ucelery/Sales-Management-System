@@ -1,16 +1,24 @@
 package App;
 
+import glasspanepopup.DefaultLayoutCallBack;
+import glasspanepopup.DefaultOption;
+import glasspanepopup.GlassPanePopup;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import net.miginfocom.layout.ComponentWrapper;
+import net.miginfocom.layout.LayoutCallback;
+import sample.notification.Notifications;
 
 public class RecordViewing extends javax.swing.JFrame {
-    private ArrayList<Record> inventoryData = null;
-    
     public RecordViewing() {
+        GlassPanePopup.install(this);
+        
         initComponents(); 
         logoSide.setBackground(new Color(251,215,9,255));
         Border noBorder = new LineBorder(new Color(251,215,9,255));
@@ -32,8 +40,6 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPoverallSales.setVisible(false);
         CPPoverallProfit.setVisible(false);
         CPPtotalSold.setVisible(false);
-        
-        inventoryData = RecordManager.getInstance().getRecordsData();
     }
     
     @SuppressWarnings("unchecked")
@@ -93,6 +99,7 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPoverallSales = new javax.swing.JLabel();
         CPPoverallProfit = new javax.swing.JLabel();
         CPPview = new javax.swing.JButton();
+        cmd = new sample.message.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -201,7 +208,7 @@ public class RecordViewing extends javax.swing.JFrame {
         logBackground.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 110, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/user_profile.png"))); // NOI18N
-        logBackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 10, 90, 90));
+        logBackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, 90, 90));
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel5.setText("PRODUCT RECORDS");
@@ -545,6 +552,14 @@ public class RecordViewing extends javax.swing.JFrame {
 
         logBackground.add(logoSide5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 1170, 380));
 
+        cmd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/sample/notification/noti.png"))); // NOI18N
+        cmd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdActionPerformed(evt);
+            }
+        });
+        logBackground.add(cmd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 20, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -633,45 +648,17 @@ public class RecordViewing extends javax.swing.JFrame {
         
         String _productName = "Photo Paper Printing";
 
+        RecordManager rmInstance = RecordManager.getInstance();
+        
         //display records
-        String sold = String.valueOf(getTotalSold(_productName));
-        String sales = String.valueOf(getTotalSales(_productName));
-        String profit = String.valueOf(getTotalProfit(_productName));
+        String sold = String.valueOf(rmInstance.getTotalSold(_productName));
+        String sales = String.valueOf(rmInstance.getTotalSales(_productName));
+        String profit = String.valueOf(rmInstance.getTotalProfit(_productName));
 
         PPPoverallSales.setText(sales + ".00");
         PPPoverallProfit.setText(profit + ".00");
         PPPtotalSold.setText(sold);
     }//GEN-LAST:event_jPanel14MouseEntered
-
-    private int getTotalSold(String productName) {
-        int totalSold = 0;
-        //display records
-        for (Record rec : inventoryData) 
-            if (productName.equals(String.valueOf(rec.getName())))
-                totalSold += rec.getSold();
-        
-        return totalSold;
-    }
-    
-    private int getTotalSales(String productName) {
-        int totalSales = 0;
-        //display records
-        for (Record rec : inventoryData)
-            if (productName.equals(String.valueOf(rec.getName()))) 
-                totalSales += rec.getSales();
-         
-        return totalSales;
-    }
-    
-    private int getTotalProfit(String productName) {
-        int totalProfit = 0;
-        //display records
-        for (Record rec : inventoryData)
-            if (productName.equals(String.valueOf(rec.getName()))) 
-                totalProfit += rec.getProfit();
-         
-        return totalProfit;
-    }
     
     private void CPPviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPPviewActionPerformed
         // TODO add your handling code here:
@@ -685,7 +672,7 @@ public class RecordViewing extends javax.swing.JFrame {
         
         // Clear table
         tableModel.setRowCount(0);
-        for (Record record : inventoryData) {
+        for (Record record : RecordManager.getInstance().getRecordsData()) {
             if (!record.getName().equals(productName)) continue;
             
             tableModel.addRow(new String[]{ String.valueOf(record.getID()), record.getType(), String.valueOf(record.getStock()), String.valueOf(record.getSold()), String.valueOf(record.getSales()), String.valueOf(record.getProfit()), String.valueOf(record.getInsertTimestamp())});
@@ -726,11 +713,13 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPtotalSold.setVisible(true);
         CPPview.setVisible(false);
         
+        RecordManager rmInstance = RecordManager.getInstance();
+        
         String _productName = "Coscard/Photocard Printing";
         //display records
-        String sold = String.valueOf(getTotalSold(_productName));
-        String sales = String.valueOf(getTotalSales(_productName));
-        String profit = String.valueOf(getTotalProfit(_productName));
+        String sold = String.valueOf(rmInstance.getTotalSold(_productName));
+        String sales = String.valueOf(rmInstance.getTotalSales(_productName));
+        String profit = String.valueOf(rmInstance.getTotalProfit(_productName));
 
         CPPoverallSales.setText(sales + ".00");
         CPPoverallProfit.setText(profit + ".00");
@@ -745,6 +734,39 @@ public class RecordViewing extends javax.swing.JFrame {
     private void viewRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRecordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_viewRecordActionPerformed
+
+    private void cmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActionPerformed
+        GlassPanePopup.showPopup(new Notifications(), new DefaultOption() {
+            @Override
+            public float opacity() {
+                return 0;
+            }
+
+            @Override
+            public LayoutCallback getLayoutCallBack(Component parent) {
+                return new DefaultLayoutCallBack(parent) {
+                    @Override
+                    public void correctBounds(ComponentWrapper cw) {
+                        if (parent.isVisible()) {
+                            Point pl = parent.getLocationOnScreen();
+                            Point bl = cmd.getLocationOnScreen();
+                            int x = bl.x - pl.x;
+                            int y = bl.y - pl.y;
+                            y += (1f - getAnimate()) * 10f;
+                            cw.setBounds(x - cw.getWidth() + cmd.getWidth(), y + cmd.getHeight(), cw.getWidth(), cw.getHeight());
+                        } else {
+                            super.correctBounds(cw);
+                        }
+                    }
+                };
+            }
+
+            @Override
+            public String getLayout(Component parent, float animate) {
+                return null;
+            }
+        });
+    }//GEN-LAST:event_cmdActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -764,6 +786,7 @@ public class RecordViewing extends javax.swing.JFrame {
     private javax.swing.JLabel PPPtotalSold;
     private javax.swing.JButton PPPview;
     private javax.swing.JButton addRecord;
+    private sample.message.Button cmd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

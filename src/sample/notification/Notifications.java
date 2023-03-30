@@ -1,7 +1,8 @@
 package sample.notification;
 
+import App.Record;
+import App.RecordManager;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,18 +11,12 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 import sample.scroll.ModernScrollBarUI;
-
-import java.text.SimpleDateFormat;  
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;  
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -30,10 +25,6 @@ public class Notifications extends javax.swing.JPanel {
     /**
      * Creates new form Notifications
      */
-    int i=0;
-    int j = 10;
-    Item[] array;
-    
     ArrayList<Item> listOfNotifs;
     JPanel[] arr = new JPanel[7];
     
@@ -50,67 +41,99 @@ public class Notifications extends javax.swing.JPanel {
         panel.setLayout(new MigLayout("inset 0, fillx, wrap", "[fill]")); //location ng panel
         
         // Load data
-        loadRecords();
+        loadRecords(RecordManager.getInstance().getRecordsData());
     }
     
     
-    public void loadRecords() {
-         try
-            {
-                String dbUser = "Napphy";
-                String dbPassword = "Sep2021102596";
-                String dbURL ="jdbc:mysql://cs155-project.c4znnhx9inbw.ap-southeast-2.rds.amazonaws.com:3306/cs155?zeroDateTimeBehavior=CONVERT_TO_NULL";
-
-                Class.forName("com.mysql.cj.jdbc.Driver");
-
-                Connection connect = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-                String viewPPPrecords = "SELECT productName,stock FROM inventory";
-                PreparedStatement getPPP = connect.prepareStatement(viewPPPrecords);
-                ResultSet getPPPrecords = getPPP.executeQuery();
-                array = new Item[j];
-            
-                getPPPrecords.last();
-                int size = getPPPrecords.getRow();
-                
-                System.out.println(size);
-                
-                //display records
-                while(getPPPrecords.next())
-                {
-                    String pName = getPPPrecords.getString("productName");
-                    int stock = getPPPrecords.getInt("stock");
-                    
-                    // Check stock, if less than 11 add notif for that product
-                    if(stock <= 10){
-                        array[i] = new Item(pName, "is runnning low in stocks. " + stock + " left. Please Review.");
-                        i++;
-                    }
-                }
-                
-                // Update Notifs
-                for(int x = 0; x < i; x++) {
-                    panel.add(array[x]);
-                }
-                /*       
-                Component[] componentList = panel.getComponents();
-                int b = 0;
-                for(Component c : componentList)
-                {
-                    if(array[b].getLbName().getText() == "5R Satin")
-                    {
-                        panel.remove(c);
-                    }
-                    b++;
-                }
-                panel.revalidate();
-                panel.repaint();
-                */
+    public void loadRecords(ArrayList<Record> records) {
+        ArrayList<Item> itemArr = new ArrayList<>();
+        
+        // Note this is the most disgusting thing I've ever made so ill try to comment
+        // TLDR we are making something like this
+        /* Sample Structure
+            "Photo Paper Printing" : {
+                "Glossy": [],
+                "SomethingOtherThanGlossy": []
+            },
+            "Coscard/Photocard Printing" : {
+                "..." : []
             }
+        */
+        HashMap<String, HashMap<String, ArrayList<Record>>> nameHashMap = new HashMap<>();
+        
+        HashMap<String, ArrayList<Record>> typeHashMap;
+        for (Record rec : records) {
+            // If hashmap for productName doesnt exist make one
+            // make one for either Photo Paper Printing or Coscard/Photocard Printing
+            if (!nameHashMap.containsKey(rec.getName())) {
+                // Add New value for a unique ProductName
+                typeHashMap = new HashMap<>();
+                
+                // Add current record productType since it shouldnt exist on a unique ProductName
+                ArrayList<Record> recArr = new ArrayList<>();
+                recArr.add(rec);
+                
+                // Add the array into the hashmap[
+                typeHashMap.put(rec.getType(), recArr);
+                
+                // Add the type hashmap into the name hashmap
+                nameHashMap.put(rec.getName(), typeHashMap);
+            } else {
+                // if exists get the hashmap key (productName)
+                typeHashMap = nameHashMap.get(rec.getName());
+                
+                // check if current record type exists if not create a new one
+                if (!typeHashMap.containsKey(rec.getName())) {
+                    typeHashMap = new HashMap<>();
+                    
+                    // Again, Add current record productType since it shouldnt exist on a unique ProductName
+                    ArrayList<Record> newRecArr = new ArrayList<>();
+                    newRecArr.add(rec);
+                    
+                    // Add the array into the hashmap[
+                    typeHashMap.put(rec.getType(), newRecArr);
 
-                    catch(Exception e)
-                    {
-                        JOptionPane.showMessageDialog(null, e);
-                    }
+                    // Add the type hashmap into the name hashmap
+                    nameHashMap.put(rec.getName(), typeHashMap);
+                } else {
+                    // If type exists get array if product type
+                    ArrayList<Record> typeRecord = typeHashMap.get(rec.getType());
+                    
+                    typeRecord.add(rec);
+                }
+            }
+        }
+        
+//        for (Map.Entry<String, ArrayList<Record>> key : recordHashMap.entrySet()) {
+//            System.out.print(key);
+//        }
+        
+        // Insert Notifs
+//        for(Item item : itemArr) {
+//            panel.add(item);
+//        }
+
+//                getPPPrecords.last();
+//                int size = getPPPrecords.getRow();
+//                
+//                //display records
+//                while(getPPPrecords.next())
+//                {
+//                    String pName = getPPPrecords.getString("productName");
+//                    int stock = getPPPrecords.getInt("stock");
+//                    
+//                    // Check stock, if less than 11 add notif for that product
+//                    if(stock <= 10){
+//                        array[i] = new Item(pName, "is runnning low in stocks. " + stock + " left. Please Review.");
+//                        i++;
+//                    }
+//                }
+//                
+//                for (Record rec : records) {
+//                    array[i] = new Item(pName, "is runnning low in stocks. " + stock + " left. Please Review.");
+//                }
+                
+                
     }
 
     @Override

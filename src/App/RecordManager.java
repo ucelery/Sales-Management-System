@@ -88,6 +88,36 @@ public class RecordManager {
         return records;
     }
     
+    public int getTotalSold(String productName) {
+        int totalSold = 0;
+        //display records
+        for (Record rec : records) 
+            if (productName.equals(String.valueOf(rec.getName())))
+                totalSold += rec.getSold();
+        
+        return totalSold;
+    }
+    
+    public int getTotalSales(String productName) {
+        int totalSales = 0;
+        //display records
+        for (Record rec : records)
+            if (productName.equals(String.valueOf(rec.getName()))) 
+                totalSales += rec.getSales();
+         
+        return totalSales;
+    }
+    
+    public int getTotalProfit(String productName) {
+        int totalProfit = 0;
+        //display records
+        for (Record rec : records)
+            if (productName.equals(String.valueOf(rec.getName()))) 
+                totalProfit += rec.getProfit();
+         
+        return totalProfit;
+    }
+    
     public static RecordManager getInstance() {
         if (_Instance == null) {
             _Instance = new RecordManager();
