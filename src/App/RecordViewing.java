@@ -1,19 +1,14 @@
 package App;
 
 import java.awt.Color;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class RecordViewing extends javax.swing.JFrame {
+    private ArrayList<Record> inventoryData = null;
     
     public RecordViewing() {
         initComponents(); 
@@ -37,8 +32,8 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPoverallSales.setVisible(false);
         CPPoverallProfit.setVisible(false);
         CPPtotalSold.setVisible(false);
-       
         
+        inventoryData = RecordManager.getInstance().getRecordsData();
     }
     
     @SuppressWarnings("unchecked")
@@ -257,51 +252,51 @@ public class RecordViewing extends javax.swing.JFrame {
 
         table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "PRODUCT NAME", "STOCKS", "NO. OF SOLD", "SALES", "PROFIT"
+                "ID", "PRODUCT TYPE", "STOCKS", "NO. OF SOLD", "SALES", "PROFIT", "TIMESTAMP"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -598,53 +593,8 @@ public class RecordViewing extends javax.swing.JFrame {
     }//GEN-LAST:event_signOutActionPerformed
 
     private void PPPviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PPPviewActionPerformed
-        // TODO add your handling code here:
         jLabel43.setText("PHOTO PAPER PRINTING");
-        //connect to db
-        try
-        {
-            String dbUser = "Napphy";
-            String dbPassword = "Sep2021102596";
-            String dbURL ="jdbc:mysql://cs155-project.c4znnhx9inbw.ap-southeast-2.rds.amazonaws.com:3306/cs155?zeroDateTimeBehavior=CONVERT_TO_NULL";
-             
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            Connection connect = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            
-            //display records from photopaer
-            String viewRecords = "SELECT * FROM photopaper";
-            try
-            {
-                PreparedStatement getRecords = connect.prepareStatement(viewRecords);
-                ResultSet records = getRecords.executeQuery();
-                DefaultTableModel tableModel = (DefaultTableModel)table1.getModel();
-                tableModel.setRowCount(0);
-            
-            //display records
-                while(records.next())
-                {
-                   tableModel.addRow(new String[]{records.getString(1), records.getString(2), records.getString(3), records.getString(4), records.getString(5), records.getString(6)});
-                    
-                }
-                
-            }
-            
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null, e);
-            }
-        }
-            
-
-        catch (ClassNotFoundException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        catch (SQLException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        populateTable("Photo Paper Printing");
     }//GEN-LAST:event_PPPviewActionPerformed
 
     private void PPPviewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PPPviewMouseExited
@@ -681,110 +631,67 @@ public class RecordViewing extends javax.swing.JFrame {
         PPPtotalSold.setVisible(true);
         PPPview.setVisible(false);
         
-        //display records
-        //connect to db
-        try
-        {
-            String dbUser = "Napphy";
-            String dbPassword = "Sep2021102596";
-            String dbURL ="jdbc:mysql://cs155-project.c4znnhx9inbw.ap-southeast-2.rds.amazonaws.com:3306/cs155?zeroDateTimeBehavior=CONVERT_TO_NULL";
-             
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            Connection connect = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            
-            //display total sold, sales, profit
-            try
-            {
-                String viewPPPrecords = "SELECT quantitySold,totalSales,profit FROM records WHERE prodID=1";
-                PreparedStatement getPPP = connect.prepareStatement(viewPPPrecords);
-                ResultSet getPPPrecords = getPPP.executeQuery();
-            
-            //display records
-                while(getPPPrecords.next())
-                {
-                    String sold = String.valueOf(getPPPrecords.getInt("quantitySold"));
-                    String sales = String.valueOf(getPPPrecords.getInt("totalSales"));
-                    String profit = String.valueOf(getPPPrecords.getInt("profit"));
-                
-                    PPPoverallSales.setText(sales + ".00");
-                    PPPoverallProfit.setText(profit + ".00");
-                    PPPtotalSold.setText(sold);
-                
-                }
-            
-            }
-            
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null, e);
-            }
+        String _productName = "Photo Paper Printing";
 
-            
-            
-        }
-        
-        catch (ClassNotFoundException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        catch (SQLException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //display records
+        String sold = String.valueOf(getTotalSold(_productName));
+        String sales = String.valueOf(getTotalSales(_productName));
+        String profit = String.valueOf(getTotalProfit(_productName));
+
+        PPPoverallSales.setText(sales + ".00");
+        PPPoverallProfit.setText(profit + ".00");
+        PPPtotalSold.setText(sold);
     }//GEN-LAST:event_jPanel14MouseEntered
 
+    private int getTotalSold(String productName) {
+        int totalSold = 0;
+        //display records
+        for (Record rec : inventoryData) 
+            if (productName.equals(String.valueOf(rec.getName())))
+                totalSold += rec.getSold();
+        
+        return totalSold;
+    }
+    
+    private int getTotalSales(String productName) {
+        int totalSales = 0;
+        //display records
+        for (Record rec : inventoryData)
+            if (productName.equals(String.valueOf(rec.getName()))) 
+                totalSales += rec.getSales();
+         
+        return totalSales;
+    }
+    
+    private int getTotalProfit(String productName) {
+        int totalProfit = 0;
+        //display records
+        for (Record rec : inventoryData)
+            if (productName.equals(String.valueOf(rec.getName()))) 
+                totalProfit += rec.getProfit();
+         
+        return totalProfit;
+    }
+    
     private void CPPviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPPviewActionPerformed
         // TODO add your handling code here:
         jLabel43.setText("COSCARD/PHOTOCARD PRINTING");
-                //connect to db
-        try
-        {
-            String dbUser = "Napphy";
-            String dbPassword = "Sep2021102596";
-            String dbURL ="jdbc:mysql://cs155-project.c4znnhx9inbw.ap-southeast-2.rds.amazonaws.com:3306/cs155?zeroDateTimeBehavior=CONVERT_TO_NULL";
-             
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            Connection connect = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            
-            //display records from photocard
-            String viewRecords = "SELECT * FROM photocard";
-            try
-            {
-                PreparedStatement getRecords = connect.prepareStatement(viewRecords);
-                ResultSet records = getRecords.executeQuery();
-                DefaultTableModel tableModel = (DefaultTableModel)table1.getModel();
-                tableModel.setRowCount(0);
-            
-            //display records
-                while(records.next())
-                {
-                   tableModel.addRow(new String[]{records.getString(1), records.getString(2), records.getString(3), records.getString(4), records.getString(5), records.getString(6)});
-                    
-                }
-                
-            }
-            
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null, e);
-            }
-        }
-            
-
-        catch (ClassNotFoundException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        catch (SQLException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        populateTable("Coscard/Photocard Printing");
     }//GEN-LAST:event_CPPviewActionPerformed
 
+    private void populateTable(String productName) {
+        DefaultTableModel tableModel = (DefaultTableModel)table1.getModel();
+        
+        // Clear table
+        tableModel.setRowCount(0);
+        for (Record record : inventoryData) {
+            if (!record.getName().equals(productName)) continue;
+            
+            tableModel.addRow(new String[]{ String.valueOf(record.getID()), record.getType(), String.valueOf(record.getStock()), String.valueOf(record.getSold()), String.valueOf(record.getSales()), String.valueOf(record.getProfit()), String.valueOf(record.getInsertTimestamp())});
+        }
+    }
+    
     private void CPPviewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CPPviewMouseExited
         CPPview.setBackground(new Color(38,38,38,255));
         CPPview.setForeground(Color.WHITE);
@@ -819,58 +726,15 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPtotalSold.setVisible(true);
         CPPview.setVisible(false);
         
+        String _productName = "Coscard/Photocard Printing";
         //display records
-        //connect to db
-        try
-        {
-            String dbUser = "Napphy";
-            String dbPassword = "Sep2021102596";
-            String dbURL ="jdbc:mysql://cs155-project.c4znnhx9inbw.ap-southeast-2.rds.amazonaws.com:3306/cs155?zeroDateTimeBehavior=CONVERT_TO_NULL";
-             
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            Connection connect = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            
-            //display total sold, sales, profit
-            try
-            {
-                String viewCPPrecords = "SELECT quantitySold,totalSales,profit FROM records WHERE prodID=2";
-                PreparedStatement getCPP = connect.prepareStatement(viewCPPrecords);
-                ResultSet getCPPrecords = getCPP.executeQuery();
-            
-            //display records
-                while(getCPPrecords.next())
-                {
-                    String sold = String.valueOf(getCPPrecords.getInt("quantitySold"));
-                    String sales = String.valueOf(getCPPrecords.getInt("totalSales"));
-                    String profit = String.valueOf(getCPPrecords.getInt("profit"));
-                
-                    CPPoverallSales.setText(sales + ".00");
-                    CPPoverallProfit.setText(profit + ".00");
-                    CPPtotalSold.setText(sold);
-                
-                }
-            
-            }
-            
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null, e);
-            }
+        String sold = String.valueOf(getTotalSold(_productName));
+        String sales = String.valueOf(getTotalSales(_productName));
+        String profit = String.valueOf(getTotalProfit(_productName));
 
-            
-            
-        }
-        
-        catch (ClassNotFoundException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        catch (SQLException ex) 
-        {
-            java.util.logging.Logger.getLogger(connectDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CPPoverallSales.setText(sales + ".00");
+        CPPoverallProfit.setText(profit + ".00");
+        CPPtotalSold.setText(sold);
     }//GEN-LAST:event_jPanel17MouseEntered
 
     private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed

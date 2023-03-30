@@ -1,7 +1,5 @@
 package App;
 
-import App.createAccountValidation;
-import App.login;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;

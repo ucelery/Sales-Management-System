@@ -17,6 +17,10 @@ public class Test extends javax.swing.JFrame {
         initComponents();
         GlassPanePopup.install(this);
     }
+    
+    private void getTableData() {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +35,7 @@ public class Test extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cmd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sample/notification/noti.png"))); // NOI18N
+        cmd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/sample/notification/noti.png"))); // NOI18N
         cmd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdActionPerformed(evt);
@@ -52,7 +56,7 @@ public class Test extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(cmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
 
         pack();
