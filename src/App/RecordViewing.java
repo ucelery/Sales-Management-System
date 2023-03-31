@@ -6,7 +6,6 @@ import glasspanepopup.GlassPanePopup;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;

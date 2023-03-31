@@ -46,8 +46,6 @@ public class Notifications extends javax.swing.JPanel {
     
     
     public void loadRecords(ArrayList<Record> records) {
-        ArrayList<Item> itemArr = new ArrayList<>();
-        
         // Note this is the most disgusting thing I've ever made so ill try to comment
         // TLDR we are making something like this
         /* Sample Structure
@@ -63,6 +61,7 @@ public class Notifications extends javax.swing.JPanel {
         
         HashMap<String, ArrayList<Record>> typeHashMap;
         for (Record rec : records) {
+            System.out.println("First: " + !nameHashMap.containsKey(rec.getName()));
             // If hashmap for productName doesnt exist make one
             // make one for either Photo Paper Printing or Coscard/Photocard Printing
             if (!nameHashMap.containsKey(rec.getName())) {
@@ -79,11 +78,10 @@ public class Notifications extends javax.swing.JPanel {
                 // Add the type hashmap into the name hashmap
                 nameHashMap.put(rec.getName(), typeHashMap);
             } else {
-                // if exists get the hashmap key (productName)
-                typeHashMap = nameHashMap.get(rec.getName());
-                
+                // if exists get the hashmap key (productName)              
                 // check if current record type exists if not create a new one
-                if (!typeHashMap.containsKey(rec.getName())) {
+                System.out.println("Second: " + !nameHashMap.get(rec.getName()).containsKey(rec.getType()) + " Type: " + rec.getType() + " Name: " + rec.getName());
+                if (!nameHashMap.get(rec.getName()).containsKey(rec.getType())) {
                     typeHashMap = new HashMap<>();
                     
                     // Again, Add current record productType since it shouldnt exist on a unique ProductName
@@ -96,17 +94,11 @@ public class Notifications extends javax.swing.JPanel {
                     // Add the type hashmap into the name hashmap
                     nameHashMap.put(rec.getName(), typeHashMap);
                 } else {
-                    // If type exists get array if product type
-                    ArrayList<Record> typeRecord = typeHashMap.get(rec.getType());
-                    
-                    typeRecord.add(rec);
+                    // If type exists add record toarray of product type 
+                    nameHashMap.get(rec.getName()).get(rec.getType()).add(rec);
                 }
             }
         }
-        
-//        for (Map.Entry<String, ArrayList<Record>> key : recordHashMap.entrySet()) {
-//            System.out.print(key);
-//        }
         
         // Insert Notifs
 //        for(Item item : itemArr) {
