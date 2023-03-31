@@ -58,10 +58,8 @@ public class Notifications extends javax.swing.JPanel {
             }
         */
         HashMap<String, HashMap<String, ArrayList<Record>>> nameHashMap = new HashMap<>();
-        
         HashMap<String, ArrayList<Record>> typeHashMap;
         for (Record rec : records) {
-            System.out.println("First: " + !nameHashMap.containsKey(rec.getName()));
             // If hashmap for productName doesnt exist make one
             // make one for either Photo Paper Printing or Coscard/Photocard Printing
             if (!nameHashMap.containsKey(rec.getName())) {
@@ -80,7 +78,6 @@ public class Notifications extends javax.swing.JPanel {
             } else {
                 // if exists get the hashmap key (productName)              
                 // check if current record type exists if not create a new one
-                System.out.println("Second: " + !nameHashMap.get(rec.getName()).containsKey(rec.getType()) + " Type: " + rec.getType() + " Name: " + rec.getName());
                 if (!nameHashMap.get(rec.getName()).containsKey(rec.getType())) {
                     typeHashMap = new HashMap<>();
                     
@@ -100,10 +97,28 @@ public class Notifications extends javax.swing.JPanel {
             }
         }
         
+        // Displaying Notification
+        ArrayList<Item> itemArr = new ArrayList<>();
+        for (String key : nameHashMap.keySet()) {
+            for (String key_2 : nameHashMap.get(key).keySet()) {
+                // Get total stock of a product
+                int totalStock = 0;
+                for (Record rec : nameHashMap.get(key).get(key_2)) {
+                    totalStock += rec.getStock();
+                }
+                
+                if (totalStock < 11) {
+                    // Make a new item for the notif
+                    itemArr.add(new Item(key + " " + key_2, "is runnning low in stocks. ", totalStock + " left. Please Review."));
+                }
+            }
+        }
+        
         // Insert Notifs
-//        for(Item item : itemArr) {
-//            panel.add(item);
-//        }
+        for(Item item : itemArr) {
+            System.out.println(item);
+            panel.add(item);
+        }
 
 //                getPPPrecords.last();
 //                int size = getPPPrecords.getRow();
@@ -120,12 +135,6 @@ public class Notifications extends javax.swing.JPanel {
 //                        i++;
 //                    }
 //                }
-//                
-//                for (Record rec : records) {
-//                    array[i] = new Item(pName, "is runnning low in stocks. " + stock + " left. Please Review.");
-//                }
-                
-                
     }
 
     @Override

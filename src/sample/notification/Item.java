@@ -1,14 +1,14 @@
 package sample.notification;
 
-import javax.swing.Icon;
 import javax.swing.JLabel;
 
 public class Item extends javax.swing.JPanel {
 
-    public Item(String name, String des) {
+    public Item(String name, String des, String details) {
         initComponents();
         lbName.setText(name);
         lbDes.setText(des);
+        lbDetails.setText(details);
     }
 
     public JLabel getLbDes() {
@@ -26,7 +26,15 @@ public class Item extends javax.swing.JPanel {
     public void setLbName(JLabel lbName) {
         this.lbName = lbName;
     }
+    
+    public void setLbDetails(JLabel lbDetail) {
+        this.lbDetails = lbDetail;
+    }
 
+    public JLabel getLbDetails(JLabel lbDetail) {
+        return lbDetails;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +46,7 @@ public class Item extends javax.swing.JPanel {
 
         lbName = new javax.swing.JLabel();
         lbDes = new javax.swing.JLabel();
+        lbDetails = new javax.swing.JLabel();
 
         setOpaque(false);
 
@@ -49,15 +58,22 @@ public class Item extends javax.swing.JPanel {
         lbDes.setForeground(new java.awt.Color(51, 51, 51));
         lbDes.setText("Description");
 
+        lbDetails.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
+        lbDetails.setForeground(new java.awt.Color(51, 51, 51));
+        lbDetails.setText("Description");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbDes)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbDes))
+                    .addComponent(lbDetails))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -67,13 +83,16 @@ public class Item extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbName)
                     .addComponent(lbDes))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbDetails)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbDes;
+    private javax.swing.JLabel lbDetails;
     private javax.swing.JLabel lbName;
     // End of variables declaration//GEN-END:variables
 
