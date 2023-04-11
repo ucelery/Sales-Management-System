@@ -6,7 +6,12 @@ import glasspanepopup.GlassPanePopup;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -51,8 +56,9 @@ public class RecordViewing extends javax.swing.JFrame {
         logoSide = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         signOut = new javax.swing.JButton();
-        addRecord = new javax.swing.JButton();
+        exportCSV = new javax.swing.JButton();
         viewRecord = new javax.swing.JButton();
+        addRecord1 = new javax.swing.JButton();
         logoSide3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -99,7 +105,6 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPoverallSales = new javax.swing.JLabel();
         CPPoverallProfit = new javax.swing.JLabel();
         CPPview = new javax.swing.JButton();
-        cmd = new sample.message.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -144,28 +149,28 @@ public class RecordViewing extends javax.swing.JFrame {
                 signOutActionPerformed(evt);
             }
         });
-        logoSide1.add(signOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 140, 43));
+        logoSide1.add(signOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 140, 43));
 
-        addRecord.setBackground(new java.awt.Color(251, 215, 9));
-        addRecord.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
-        addRecord.setForeground(new java.awt.Color(38, 38, 38));
-        addRecord.setText("ADD RECORD");
-        addRecord.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        addRecord.setFocusPainted(false);
-        addRecord.addMouseListener(new java.awt.event.MouseAdapter() {
+        exportCSV.setBackground(new java.awt.Color(251, 215, 9));
+        exportCSV.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
+        exportCSV.setForeground(new java.awt.Color(38, 38, 38));
+        exportCSV.setText("EXPORT TO CSV");
+        exportCSV.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        exportCSV.setFocusPainted(false);
+        exportCSV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                addRecordMouseEntered(evt);
+                exportCSVMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                addRecordMouseExited(evt);
+                exportCSVMouseExited(evt);
             }
         });
-        addRecord.addActionListener(new java.awt.event.ActionListener() {
+        exportCSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addRecordActionPerformed(evt);
+                exportCSVActionPerformed(evt);
             }
         });
-        logoSide1.add(addRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 140, 43));
+        logoSide1.add(exportCSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 140, 43));
 
         viewRecord.setBackground(new java.awt.Color(38, 38, 38));
         viewRecord.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
@@ -179,6 +184,27 @@ public class RecordViewing extends javax.swing.JFrame {
             }
         });
         logoSide1.add(viewRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 140, 43));
+
+        addRecord1.setBackground(new java.awt.Color(251, 215, 9));
+        addRecord1.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
+        addRecord1.setForeground(new java.awt.Color(38, 38, 38));
+        addRecord1.setText("ADD RECORD");
+        addRecord1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        addRecord1.setFocusPainted(false);
+        addRecord1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addRecord1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addRecord1MouseExited(evt);
+            }
+        });
+        addRecord1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRecord1ActionPerformed(evt);
+            }
+        });
+        logoSide1.add(addRecord1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 140, 43));
 
         logBackground.add(logoSide1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 140, 950));
 
@@ -552,14 +578,6 @@ public class RecordViewing extends javax.swing.JFrame {
 
         logBackground.add(logoSide5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 1170, 380));
 
-        cmd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/sample/notification/noti.png"))); // NOI18N
-        cmd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdActionPerformed(evt);
-            }
-        });
-        logBackground.add(cmd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 20, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -579,15 +597,15 @@ public class RecordViewing extends javax.swing.JFrame {
         this.requestFocusInWindow();
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private void addRecordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRecordMouseEntered
-        addRecord.setBackground(new Color(38,38,38,255));
-        addRecord.setForeground(new Color(251,215,9,255));
-    }//GEN-LAST:event_addRecordMouseEntered
+    private void exportCSVMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportCSVMouseEntered
+        exportCSV.setBackground(new Color(38,38,38,255));
+        exportCSV.setForeground(new Color(251,215,9,255));
+    }//GEN-LAST:event_exportCSVMouseEntered
 
-    private void addRecordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRecordMouseExited
-        addRecord.setBackground(new Color(251,215,9,255));
-        addRecord.setForeground(new Color(38,38,38,255));
-    }//GEN-LAST:event_addRecordMouseExited
+    private void exportCSVMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportCSVMouseExited
+        exportCSV.setBackground(new Color(251,215,9,255));
+        exportCSV.setForeground(new Color(38,38,38,255));
+    }//GEN-LAST:event_exportCSVMouseExited
 
     private void signOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signOutMouseEntered
         signOut.setBackground(new Color(38,38,38,255));
@@ -726,10 +744,31 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPtotalSold.setText(sold);
     }//GEN-LAST:event_jPanel17MouseEntered
 
-    private void addRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecordActionPerformed
-        this.dispose();
-        new addRecord().setVisible(true);
-    }//GEN-LAST:event_addRecordActionPerformed
+    private void exportCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportCSVActionPerformed
+        //JFILE Chooser
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file name");
+        int userSelection = fileChooser.showSaveDialog(this);
+        if(userSelection == JFileChooser.APPROVE_OPTION){
+            File fileToSave = fileChooser.getSelectedFile();
+            
+            try {
+                    FileWriter fw = new FileWriter(fileToSave);
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (int i = 0; i <table1.getRowCount(); i++) {
+                    for (int j = 0; j < table1.getColumnCount(); j++) {
+                        bw.write(table1.getValueAt(i, j).toString()+",");
+                    }
+                    bw.newLine();
+                }             
+                JOptionPane.showMessageDialog(this, "SUCCESSFULLY EXPORTED", "DATA",JOptionPane.INFORMATION_MESSAGE);
+                bw.close();
+                fw.close();
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "ERROR", "ERROR MESSAGE",JOptionPane.ERROR_MESSAGE);
+            }
+        }          
+    }//GEN-LAST:event_exportCSVActionPerformed
 
     private void viewRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRecordActionPerformed
         // TODO add your handling code here:
@@ -768,6 +807,18 @@ public class RecordViewing extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_cmdActionPerformed
 
+    private void addRecord1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRecord1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addRecord1MouseEntered
+
+    private void addRecord1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRecord1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addRecord1MouseExited
+
+    private void addRecord1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecord1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addRecord1ActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -785,8 +836,8 @@ public class RecordViewing extends javax.swing.JFrame {
     private javax.swing.JLabel PPPoverallSales;
     private javax.swing.JLabel PPPtotalSold;
     private javax.swing.JButton PPPview;
-    private javax.swing.JButton addRecord;
-    private sample.message.Button cmd;
+    private javax.swing.JButton addRecord1;
+    private javax.swing.JButton exportCSV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
