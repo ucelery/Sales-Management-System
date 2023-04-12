@@ -15,6 +15,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.LayoutCallback;
@@ -754,29 +755,43 @@ public class RecordViewing extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel17MouseEntered
 
     private void exportCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportCSVActionPerformed
-        //JFILE Chooser
+                    //JFILE Chooser
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify a file name");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("CSV Files", ".csv"));
         int userSelection = fileChooser.showSaveDialog(this);
         if(userSelection == JFileChooser.APPROVE_OPTION){
             File fileToSave = fileChooser.getSelectedFile();
             
-            try {
-                    FileWriter fw = new FileWriter(fileToSave);
-                BufferedWriter bw = new BufferedWriter(fw);
-                for (int i = 0; i <table1.getRowCount(); i++) {
-                    for (int j = 0; j < table1.getColumnCount(); j++) {
-                        bw.write(table1.getValueAt(i, j).toString()+",");
+                    // If the selected file doesn't have a ".csv" extension, add it
+                    if(!fileToSave.getName().toLowerCase().endsWith(".csv")) {
+                        fileToSave = new File(fileToSave.getParentFile(), fileToSave.getName() + ".csv");
                     }
-                    bw.newLine();
-                }             
-                JOptionPane.showMessageDialog(this, "SUCCESSFULLY EXPORTED", "DATA",JOptionPane.INFORMATION_MESSAGE);
+            
+            try {
+                FileWriter fw = new FileWriter(fileToSave);
+                BufferedWriter bw = new BufferedWriter(fw);
+
+            // Write column names to file
+            for (int i = 0; i < table1.getColumnCount(); i++) {
+                bw.write(table1.getColumnName(i) + ",");
+            }
+                bw.newLine();
+            
+            // Write table data to file
+            for (int i = 0; i <table1.getRowCount(); i++) {
+                for (int j = 0; j < table1.getColumnCount(); j++) {
+                    bw.write(table1.getValueAt(i, j).toString()+",");
+                }
+                bw.newLine();
+            }             
+            JOptionPane.showMessageDialog(this, "SUCCESSFULLY EXPORTED", "DATA",JOptionPane.INFORMATION_MESSAGE);
                 bw.close();
                 fw.close();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "ERROR", "ERROR MESSAGE",JOptionPane.ERROR_MESSAGE);
             }
-        }          
+        } 
     }//GEN-LAST:event_exportCSVActionPerformed
 
     private void viewRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRecordActionPerformed
@@ -818,14 +833,20 @@ public class RecordViewing extends javax.swing.JFrame {
 
     private void addRecord1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRecord1MouseEntered
         // TODO add your handling code here:
+        addRecord1.setBackground(new Color(38,38,38,255));
+        addRecord1.setForeground(new Color(251,215,9,255));
     }//GEN-LAST:event_addRecord1MouseEntered
 
     private void addRecord1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRecord1MouseExited
         // TODO add your handling code here:
+        addRecord1.setBackground(new Color(251,215,9,255));
+        addRecord1.setForeground(new Color(38,38,38,255));
     }//GEN-LAST:event_addRecord1MouseExited
 
     private void addRecord1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecord1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new addRecord().setVisible(true);
     }//GEN-LAST:event_addRecord1ActionPerformed
 
     public static void main(String args[]) {
