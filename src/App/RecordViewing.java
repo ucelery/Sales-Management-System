@@ -105,6 +105,7 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPoverallSales = new javax.swing.JLabel();
         CPPoverallProfit = new javax.swing.JLabel();
         CPPview = new javax.swing.JButton();
+        cmd = new sample.message.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -578,6 +579,14 @@ public class RecordViewing extends javax.swing.JFrame {
 
         logBackground.add(logoSide5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 1170, 380));
 
+        cmd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/sample/notification/noti.png"))); // NOI18N
+        cmd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdActionPerformed(evt);
+            }
+        });
+        logBackground.add(cmd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 20, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -837,6 +846,7 @@ public class RecordViewing extends javax.swing.JFrame {
     private javax.swing.JLabel PPPtotalSold;
     private javax.swing.JButton PPPview;
     private javax.swing.JButton addRecord1;
+    private sample.message.Button cmd;
     private javax.swing.JButton exportCSV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
