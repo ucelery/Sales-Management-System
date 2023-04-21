@@ -116,7 +116,7 @@ public class login extends javax.swing.JFrame {
                 createBTActionPerformed(evt);
             }
         });
-        logPage.add(createBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 462, 150, 43));
+        logPage.add(createBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 460, 160, 43));
 
         loginBT.setBackground(new java.awt.Color(251, 215, 9));
         loginBT.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
@@ -177,7 +177,7 @@ public class login extends javax.swing.JFrame {
                 forgotBTActionPerformed(evt);
             }
         });
-        logPage.add(forgotBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 523, 170, 43));
+        logPage.add(forgotBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, -1, 43));
 
         passTF.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
         logPage.add(passTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 296, 258, 40));

@@ -258,7 +258,7 @@ public class RecordViewing extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel16.setForeground(java.awt.Color.white);
         jLabel16.setText("Marie's Printing Services Sales Management System");
-        logoSide3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 870, -1));
+        logoSide3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 1090, -1));
 
         logBackground.add(logoSide3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 1170, 100));
 
@@ -273,7 +273,7 @@ public class RecordViewing extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel5.setText("PRODUCT RECORDS");
-        logBackground.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 190, 40));
+        logBackground.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 200, 40));
 
         logoSide6.setBackground(new java.awt.Color(38, 38, 38));
         logoSide6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -491,7 +491,7 @@ public class RecordViewing extends javax.swing.JFrame {
         });
         jPanel13.add(PPPview, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 180, 70));
 
-        logoSide5.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 460, 270));
+        logoSide5.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 490, 270));
 
         jPanel16.setBackground(new java.awt.Color(251, 215, 9));
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
