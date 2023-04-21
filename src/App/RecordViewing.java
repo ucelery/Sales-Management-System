@@ -1,5 +1,9 @@
 package App;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import glasspanepopup.DefaultLayoutCallBack;
 import glasspanepopup.DefaultOption;
 import glasspanepopup.GlassPanePopup;
@@ -8,15 +12,23 @@ import java.awt.Component;
 import java.awt.Point;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.header;
 import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.LayoutCallback;
 import sample.notification.Notifications;
@@ -60,6 +72,7 @@ public class RecordViewing extends javax.swing.JFrame {
         exportCSV = new javax.swing.JButton();
         viewRecord = new javax.swing.JButton();
         addRecord1 = new javax.swing.JButton();
+        exportPDF = new javax.swing.JButton();
         logoSide3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -151,7 +164,7 @@ public class RecordViewing extends javax.swing.JFrame {
                 signOutActionPerformed(evt);
             }
         });
-        logoSide1.add(signOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 140, 43));
+        logoSide1.add(signOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 140, 43));
 
         exportCSV.setBackground(new java.awt.Color(251, 215, 9));
         exportCSV.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
@@ -207,6 +220,27 @@ public class RecordViewing extends javax.swing.JFrame {
             }
         });
         logoSide1.add(addRecord1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 140, 43));
+
+        exportPDF.setBackground(new java.awt.Color(251, 215, 9));
+        exportPDF.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
+        exportPDF.setForeground(new java.awt.Color(38, 38, 38));
+        exportPDF.setText("EXPORT TO PDF");
+        exportPDF.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        exportPDF.setFocusPainted(false);
+        exportPDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exportPDFMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exportPDFMouseExited(evt);
+            }
+        });
+        exportPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportPDFActionPerformed(evt);
+            }
+        });
+        logoSide1.add(exportPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 140, 43));
 
         logBackground.add(logoSide1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 140, 950));
 
@@ -849,6 +883,68 @@ public class RecordViewing extends javax.swing.JFrame {
         new addRecord().setVisible(true);
     }//GEN-LAST:event_addRecord1ActionPerformed
 
+    private void exportPDFMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportPDFMouseEntered
+        // TODO add your handling code here:
+        exportPDF.setBackground(new Color(38,38,38,255));
+        exportPDF.setForeground(new Color(251,215,9,255));
+    }//GEN-LAST:event_exportPDFMouseEntered
+
+    private void exportPDFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportPDFMouseExited
+        // TODO add your handling code here:
+        exportPDF.setBackground(new Color(251,215,9,255));
+        exportPDF.setForeground(new Color(38,38,38,255));
+    }//GEN-LAST:event_exportPDFMouseExited
+
+    private void exportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportPDFActionPerformed
+        // TODO add your handling code here:
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("PDF Files", ".pdf"));
+        int userSelection = fileChooser.showSaveDialog(this);
+        if(userSelection == JFileChooser.APPROVE_OPTION){
+            File fileToSave = fileChooser.getSelectedFile();
+            
+                    // If the selected file doesn't have a ".csv" extension, add it
+                    if(!fileToSave.getName().toLowerCase().endsWith(".pdf")) {
+                        fileToSave = new File(fileToSave.getParentFile(), fileToSave.getName() + ".pdf");
+                    }
+
+        
+        Document doc = new Document();
+        
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(fileToSave));
+            
+            doc.open();
+            
+            PdfPTable tbl = new PdfPTable(table1.getColumnCount());
+            
+            //Add Headers from Table
+            for (int i = 0; i < table1.getColumnCount(); i++) {
+                tbl.addCell(table1.getColumnName(i));
+            }
+ 
+            //Add table data from table
+            
+            for (int i = 0; i <table1.getRowCount(); i++) {
+                for (int p = 0; p < table1.getColumnCount(); p++) {
+                    tbl.addCell(table1.getValueAt(i, p).toString());
+                }
+            }
+            doc.add(tbl);
+    
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RecordViewing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(RecordViewing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        doc.close();
+        }
+    }//GEN-LAST:event_exportPDFActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -869,6 +965,7 @@ public class RecordViewing extends javax.swing.JFrame {
     private javax.swing.JButton addRecord1;
     private sample.message.Button cmd;
     private javax.swing.JButton exportCSV;
+    private javax.swing.JButton exportPDF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
