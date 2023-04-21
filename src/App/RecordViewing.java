@@ -2,6 +2,7 @@ package App;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import glasspanepopup.DefaultLayoutCallBack;
@@ -358,7 +359,7 @@ public class RecordViewing extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "PRODUCT TYPE", "STOCKS", "NO. OF SOLD", "SALES", "PROFIT", "TIMESTAMP"
+                "ID", "PRODUCT NAME", "STOCKS", "NO. OF SOLD", "SALES", "PROFIT", "TIMESTAMP"
             }
         ) {
             Class[] types = new Class [] {
@@ -729,15 +730,15 @@ public class RecordViewing extends javax.swing.JFrame {
         populateTable("Coscard/Photocard Printing");
     }//GEN-LAST:event_CPPviewActionPerformed
 
-    private void populateTable(String productName) {
+    private void populateTable(String productType) {
         DefaultTableModel tableModel = (DefaultTableModel)table1.getModel();
         
         // Clear table
         tableModel.setRowCount(0);
         for (Record record : RecordManager.getInstance().getRecordsData()) {
-            if (!record.getName().equals(productName)) continue;
+            if (!record.getType().equals(productType)) continue;
             
-            tableModel.addRow(new String[]{ String.valueOf(record.getID()), record.getType(), String.valueOf(record.getStock()), String.valueOf(record.getSold()), String.valueOf(record.getSales()), String.valueOf(record.getProfit()), String.valueOf(record.getInsertTimestamp())});
+            tableModel.addRow(new String[]{ String.valueOf(record.getID()), record.getName(), String.valueOf(record.getStock()), String.valueOf(record.getSold()), String.valueOf(record.getSales()), String.valueOf(record.getProfit()), String.valueOf(record.getInsertTimestamp())});
         }
     }
     
@@ -912,6 +913,8 @@ public class RecordViewing extends javax.swing.JFrame {
 
         
         Document doc = new Document();
+        doc.setPageSize(PageSize.LETTER.rotate());
+
         
         try {
             PdfWriter.getInstance(doc, new FileOutputStream(fileToSave));
