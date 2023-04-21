@@ -85,10 +85,8 @@ public class RecordViewing extends javax.swing.JFrame {
         jPanel27 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
         logoSide5 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -315,10 +313,8 @@ public class RecordViewing extends javax.swing.JFrame {
 
         logoSide6.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 1130, 10));
 
-        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -379,12 +375,7 @@ public class RecordViewing extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(table1);
 
-        jScrollPane4.setViewportView(jScrollPane2);
-
-        logoSide6.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 1130, 160));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/App/Images/printer.png"))); // NOI18N
-        logoSide6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 70, 80));
+        logoSide6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 1130, 160));
 
         logBackground.add(logoSide6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 620, 1170, 370));
 
@@ -621,7 +612,7 @@ public class RecordViewing extends javax.swing.JFrame {
                 cmdActionPerformed(evt);
             }
         });
-        logBackground.add(cmd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 20, -1, -1));
+        logBackground.add(cmd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 30, 50, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -984,7 +975,6 @@ public class RecordViewing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -1003,7 +993,6 @@ public class RecordViewing extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel logBackground;
     private javax.swing.JPanel logoSide;
     private javax.swing.JPanel logoSide1;
