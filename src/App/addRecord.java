@@ -355,8 +355,8 @@ public class addRecord extends javax.swing.JFrame {
 
     private void submitButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButActionPerformed
         // TODO add your handling code here:
-        a = productName.getSelectedItem().toString();
-        b = cbCPP.getSelectedItem().toString();
+        b = productName.getSelectedItem().toString();
+        a = cbCPP.getSelectedItem().toString();
         
         String soldValue = jSpinner1.getValue().toString();
         String itemStock = jSpinner2.getValue().toString();
@@ -366,7 +366,7 @@ public class addRecord extends javax.swing.JFrame {
     }//GEN-LAST:event_submitButActionPerformed
 
     private void productNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameActionPerformed
-        a = productName.getSelectedItem().toString();
+        b = productName.getSelectedItem().toString();
         
         
         if("Photo Paper Printing".equals(a)){

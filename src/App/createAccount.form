@@ -191,7 +191,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="26" red="26" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CREATE ACCOUNT"/>
+                <Property name="text" type="java.lang.String" value="CREATE"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createAccBTActionPerformed"/>
@@ -257,7 +257,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Password (minimum of 8 characters)"/>
+                <Property name="text" type="java.lang.String" value="Password (minimum of 8 characters with numbers)"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

@@ -111,7 +111,7 @@ public class createAccount extends javax.swing.JFrame {
         createAccBT.setBackground(new java.awt.Color(251, 215, 9));
         createAccBT.setFont(new java.awt.Font("Trebuchet MS", 1, 13)); // NOI18N
         createAccBT.setForeground(new java.awt.Color(38, 38, 38));
-        createAccBT.setText("CREATE ACCOUNT");
+        createAccBT.setText("CREATE");
         createAccBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createAccBTActionPerformed(evt);
@@ -147,7 +147,7 @@ public class createAccount extends javax.swing.JFrame {
 
         passL.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
         passL.setForeground(new java.awt.Color(255, 255, 255));
-        passL.setText("Password (minimum of 8 characters)");
+        passL.setText("Password (minimum of 8 characters with numbers)");
         logPage.add(passL, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 226, -1, -1));
 
         divider2.setBackground(new java.awt.Color(251, 215, 9));
