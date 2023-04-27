@@ -104,7 +104,7 @@ public class Notifications extends javax.swing.JPanel {
                 // Get total stock of a product
                 int totalStock = 0;
                 for (Record rec : nameHashMap.get(key).get(key_2)) {
-                    totalStock += rec.getStock();
+                    totalStock = rec.getStock();
                 }
                 
                 if (totalStock < 11) {

@@ -431,13 +431,13 @@ public class RecordViewing extends javax.swing.JFrame {
         jLabel32.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(38, 38, 38));
         jLabel32.setText("Total Sold:");
-        jPanel13.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 70, 40));
+        jPanel13.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 40));
 
         jLabel33.setBackground(new java.awt.Color(142, 149, 153));
         jLabel33.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(38, 38, 38));
         jLabel33.setText("Overall Sales:");
-        jPanel13.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, 40));
+        jPanel13.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 40));
 
         jLabel47.setBackground(new java.awt.Color(142, 149, 153));
         jLabel47.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -453,17 +453,17 @@ public class RecordViewing extends javax.swing.JFrame {
         PPPtotalSold.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         PPPtotalSold.setForeground(new java.awt.Color(38, 38, 38));
         PPPtotalSold.setText("0");
-        jPanel13.add(PPPtotalSold, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 40, -1));
+        jPanel13.add(PPPtotalSold, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(38, 38, 38));
         jLabel35.setText("PHP");
-        jPanel13.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+        jPanel13.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
         PPPoverallSales.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         PPPoverallSales.setForeground(new java.awt.Color(38, 38, 38));
         PPPoverallSales.setText("0.00");
-        jPanel13.add(PPPoverallSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+        jPanel13.add(PPPoverallSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
         PPPoverallProfit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         PPPoverallProfit.setForeground(new java.awt.Color(38, 38, 38));
@@ -542,13 +542,13 @@ public class RecordViewing extends javax.swing.JFrame {
         jLabel39.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(38, 38, 38));
         jLabel39.setText("Total Sold:");
-        jPanel16.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 70, 40));
+        jPanel16.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 40));
 
         jLabel40.setBackground(new java.awt.Color(142, 149, 153));
         jLabel40.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(38, 38, 38));
         jLabel40.setText("Overall Sales:");
-        jPanel16.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, 40));
+        jPanel16.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 40));
 
         jLabel48.setBackground(new java.awt.Color(142, 149, 153));
         jLabel48.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -564,17 +564,17 @@ public class RecordViewing extends javax.swing.JFrame {
         CPPtotalSold.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         CPPtotalSold.setForeground(new java.awt.Color(38, 38, 38));
         CPPtotalSold.setText("0");
-        jPanel16.add(CPPtotalSold, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 30, -1));
+        jPanel16.add(CPPtotalSold, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
 
         jLabel42.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(38, 38, 38));
         jLabel42.setText("PHP");
-        jPanel16.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+        jPanel16.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
         CPPoverallSales.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         CPPoverallSales.setForeground(new java.awt.Color(38, 38, 38));
         CPPoverallSales.setText("0.00");
-        jPanel16.add(CPPoverallSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+        jPanel16.add(CPPoverallSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
         CPPoverallProfit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         CPPoverallProfit.setForeground(new java.awt.Color(38, 38, 38));
