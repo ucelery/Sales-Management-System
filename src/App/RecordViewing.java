@@ -17,7 +17,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.attribute.PrintRequestAttributeSet;
@@ -355,7 +358,7 @@ public class RecordViewing extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "PRODUCT NAME", "STOCKS", "NO. OF SOLD", "SALES", "PROFIT", "TIMESTAMP"
+                "ID", "PRODUCT NAME", "STOCKS", "NO. OF SOLD", "SALES", "PROFIT", "DATE"
             }
         ) {
             Class[] types = new Class [] {
@@ -729,7 +732,11 @@ public class RecordViewing extends javax.swing.JFrame {
         for (Record record : RecordManager.getInstance().getRecordsData()) {
             if (!record.getType().equals(productType)) continue;
             
-            tableModel.addRow(new String[]{ String.valueOf(record.getID()), record.getName(), String.valueOf(record.getStock()), String.valueOf(record.getSold()), String.valueOf(record.getSales()), String.valueOf(record.getProfit()), String.valueOf(record.getInsertTimestamp())});
+            System.out.println();
+            Date date = new Date(record.getInsertTimestamp().getTime());
+            DateFormat f1 = new SimpleDateFormat("yyyy/MM/dd");
+            String dateStr = f1.format(date);
+            tableModel.addRow(new String[]{ String.valueOf(record.getID()), record.getName(), String.valueOf(record.getStock()), String.valueOf(record.getSold()), String.valueOf(record.getSales()), String.valueOf(record.getProfit()), String.valueOf(dateStr)});
         }
     }
     

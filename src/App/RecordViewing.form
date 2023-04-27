@@ -461,7 +461,7 @@
                         <Column editable="false" title="NO. OF SOLD" type="java.lang.Integer"/>
                         <Column editable="false" title="SALES" type="java.lang.Integer"/>
                         <Column editable="false" title="PROFIT" type="java.lang.Integer"/>
-                        <Column editable="false" title="TIMESTAMP" type="java.lang.String"/>
+                        <Column editable="false" title="DATE" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
